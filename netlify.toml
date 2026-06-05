@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/cache/*"
+  to = "/api/cache/:splat"
+  status = 200
