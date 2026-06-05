@@ -26,11 +26,17 @@ export async function seedDefaultUser() {
           .where(eq(schema.user.email, DEFAULT_USER_EMAIL))
           .limit(1)
 
-        if (!existing) {
+        if (existing) {
+          console.log("[seed] Default user already exists, skipping seed.", existing.id)
+        } else {
           const userId = crypto.randomUUID()
           const accountId = crypto.randomUUID()
           const now = new Date().toISOString()
           const passwordHash = await hashPassword(DEFAULT_USER_PASSWORD)
+
+          console.log("[seed] Creating default user:", DEFAULT_USER_EMAIL)
+          console.log("[seed] Password being hashed:", JSON.stringify(DEFAULT_USER_PASSWORD))
+          console.log("[seed] Generated hash:", passwordHash)
 
           await db.insert(schema.user).values({
             id: userId,
@@ -52,7 +58,12 @@ export async function seedDefaultUser() {
             createdAt: new Date(now),
             updatedAt: new Date(now),
           })
+
+          console.log("[seed] Default user seeded successfully.")
         }
+      } catch (error) {
+        console.error("[seed] Error seeding default user:", error)
+        throw error
       } finally {
         seeded = true
       }
