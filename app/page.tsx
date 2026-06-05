@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { ArrowRight, FolderLock, Globe, Shield } from "lucide-react"
 
 import Navbar from "@/components/layout/navbar"
-import { authClient } from "@/lib/auth-client"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -31,9 +30,8 @@ const features = [
 ]
 
 export default function Page() {
-  const { data: session } = authClient.useSession()
-  const ctaHref = session ? "/admin" : "/login"
-  const ctaLabel = session ? "Manage Files!" : "Get Started!"
+  const ctaHref = "/admin"
+  const ctaLabel = "Manage Files!"
 
   return (
     <div className="flex min-h-screen flex-col bg-background">

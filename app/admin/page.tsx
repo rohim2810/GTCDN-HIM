@@ -203,8 +203,8 @@ function AdminPageContent() {
           `/api/admin/status?path=${encodeURIComponent(currentPath)}`
         )
         applyAdminData(nextData)
-      } catch {
-        router.replace("/login")
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load data")
       } finally {
         setLoadingPage(false)
       }
