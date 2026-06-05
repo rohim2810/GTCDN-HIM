@@ -65,16 +65,16 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block text-sm font-medium text-foreground"
             >
-              Username
+              Email
             </label>
             <input
-              id="username"
+              id="email"
               type="text"
               readOnly
-              value="user"
+              value="user@localhost"
               className="w-full cursor-default rounded-lg border border-input bg-muted px-3 py-2 text-sm text-muted-foreground outline-none select-none"
             />
           </div>
