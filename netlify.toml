@@ -1,4 +1,5 @@
 [[redirects]]
   from = "/cache/*"
-  to = "/api/cache/:splat"
+  to = "https://pub-d800a5060f6c4085aabb783c3d793a97.r2.dev/cache/:splat"
   status = 200
+  force = true
