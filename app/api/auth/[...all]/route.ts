@@ -1,5 +1,11 @@
-import { toNextJsHandler } from "better-auth/next-js"
+import { auth, seedDefaultUser } from "@/lib/auth"
 
-import { auth } from "@/lib/auth"
+export async function GET(req: Request) {
+  await seedDefaultUser()
+  return auth.handler(req)
+}
 
-export const { GET, POST } = toNextJsHandler(auth)
+export async function POST(req: Request) {
+  await seedDefaultUser()
+  return auth.handler(req)
+}

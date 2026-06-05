@@ -15,7 +15,7 @@ import {
 let seeded = false
 let seedPromise: Promise<void> | null = null
 
-async function seedDefaultUser() {
+export async function seedDefaultUser() {
   if (seeded) return
   if (!seedPromise) {
     seedPromise = (async () => {
@@ -60,17 +60,6 @@ async function seedDefaultUser() {
   }
 
   await seedPromise
-}
-
-const autoBootstrap = (
-  process.env.BETTER_AUTH_URL ?? "http://localhost:3000"
-).includes("localhost")
-
-if (autoBootstrap) {
-  void seedDefaultUser().catch(() => {
-    seeded = false
-    seedPromise = null
-  })
 }
 
 export const auth = betterAuth({
